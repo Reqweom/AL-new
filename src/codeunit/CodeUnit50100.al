@@ -1,17 +1,19 @@
 codeunit 50100 "PEG Turn off grouping"
-{
-    TableNo = "Sales Line";
-    trigger OnRun()
+{  
+    procedure setShow(var Show: Boolean)
+    var
+        SalesHeader: Record "Sales Header";
     begin
-        Message('Hello1');
+        ShowGroupColumn := Show;
     end;
 
-    procedure "Turn off grouping"(var SalesLine: Record "Sales Line")
-    begin
-        Message('Hello');
-        // SalesLine."PEG Group Toggle" := false;
-    end;
-    
+    procedure getShow() ReturnValue: Boolean
     var
-        myInt: Integer;
+        SalesHeader: Record "Sales Header";
+    begin
+        ReturnValue := ShowGroupColumn;
+    end;
+
+    var
+        ShowGroupColumn: Boolean;
 }
